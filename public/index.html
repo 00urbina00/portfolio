@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Eduardo Daniel Urbina Campos | Full Stack & AWS Cloud Developer</title>
+
+  <meta
+    name="description"
+    content="Portfolio of Eduardo Daniel Urbina Campos, Full Stack Application Developer focused on AWS Cloud, web applications, DevOps, automation and artificial intelligence."
+  >
+
+  <meta name="author" content="Eduardo Daniel Urbina Campos">
+  <meta name="theme-color" content="#0b1020">
+
+  <meta property="og:title" content="Eduardo Daniel Urbina Campos | Full Stack & AWS Cloud Developer">
+  <meta
+    property="og:description"
+    content="Full Stack Application Developer focused on AWS Cloud, modern web applications, DevOps and AI-driven solutions."
+  >
+  <meta property="og:type" content="website">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #070b14;
+      --background-soft: #0d1322;
+      --surface: rgba(18, 27, 48, 0.78);
+      --surface-strong: #121b30;
+      --surface-hover: #17233d;
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #f8fafc;
+      --text-soft: #cbd5e1;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-soft: rgba(56, 189, 248, 0.14);
+      --secondary: #a78bfa;
+      --success: #34d399;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.10), transparent 30%),
+        linear-gradient(180deg, #070b14 0%, #0a0f1d 52%, #070b14 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      background: rgba(7, 11, 20, 0.76);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(167, 139, 250, 0.25));
+      border: 1px solid rgba(125, 211, 252, 0.28);
+      color: var(--primary);
+      font-size: 0.95rem;
+      box-shadow: inset 0 0 24px rgba(56, 189, 248, 0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      transition: color 160ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--primary);
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin-bottom: 24px;
+      font-size: clamp(3.1rem, 8vw, 6.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #f8fafc, #7dd3fc 44%, #c4b5fd);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin-bottom: 30px;
+      color: var(--text-soft);
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 750;
+      transition:
+        transform 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+      color: white;
+      box-shadow: 0 14px 40px rgba(56, 189, 248, 0.16);
+    }
+
+    .button-secondary {
+      background: rgba(15, 23, 42, 0.72);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(18, 27, 48, 0.92), rgba(13, 19, 34, 0.88));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px auto auto -70px;
+      width: 190px;
+      height: 190px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      filter: blur(12px);
+    }
+
+    .status {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      color: var(--success);
+      font-size: 0.92rem;
+      font-weight: 750;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 16px currentColor;
+    }
+
+    .focus-list {
+      position: relative;
+      display: grid;
+      gap: 12px;
+    }
+
+    .focus-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      border-radius: 14px;
+      background: rgba(7, 11, 20, 0.42);
+    }
+
+    .focus-item span:first-child {
+      color: var(--text-soft);
+      font-weight: 650;
+    }
+
+    .focus-item span:last-child {
+      color: var(--primary);
+      font-size: 0.85rem;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.35fr) minmax(0, 0.65fr);
+      gap: 42px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--primary);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .section-description {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+    }
+
+    .about-card {
+      padding: clamp(26px, 5vw, 44px);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+      gap: 42px;
+    }
+
+    .about-copy p {
+      color: var(--text-soft);
+      font-size: 1.06rem;
+    }
+
+    .about-copy strong {
+      color: var(--text);
+    }
+
+    .about-facts {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .fact {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.13);
+      background: rgba(7, 11, 20, 0.38);
+    }
+
+    .fact-label {
+      margin-bottom: 4px;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .fact-value {
+      font-weight: 750;
+      color: var(--text);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 24px;
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.34);
+      background: rgba(18, 27, 48, 0.96);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.14rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 7px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      padding: 26px;
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(167, 139, 250, 0.34);
+    }
+
+    .project-label {
+      margin-bottom: 13px;
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.38rem;
+      letter-spacing: -0.025em;
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      flex-grow: 1;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pipeline-card {
+      overflow: hidden;
+      padding: clamp(26px, 5vw, 44px);
+      background:
+        linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent 42%),
+        linear-gradient(180deg, rgba(18, 27, 48, 0.94), rgba(13, 19, 34, 0.92));
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+
+    .pipeline-step {
+      position: relative;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      background: rgba(7, 11, 20, 0.5);
+    }
+
+    .pipeline-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -17px;
+      z-index: 2;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .step-number {
+      color: var(--primary);
+      font-weight: 850;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    .step-title {
+      font-weight: 800;
+      font-size: 1.02rem;
+    }
+
+    .step-copy {
+      margin-bottom: 0;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 28px;
+      padding: clamp(28px, 5vw, 46px);
+      background:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(139, 92, 246, 0.08)),
+        var(--surface);
+    }
+
+    .contact-card p {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: var(--text-soft);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    .footer-note {
+      margin-bottom: 8px;
+    }
+
+    .footer-stack {
+      color: var(--text-soft);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .about-grid,
+      .section-heading,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline-step {
+        min-height: auto;
+      }
+
+      .pipeline-step:not(:last-child)::after {
+        content: "↓";
+        top: auto;
+        right: 50%;
+        bottom: -22px;
+        transform: translateX(50%);
+      }
+
+      .contact-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        min-height: 64px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 72px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 16vw, 4.6rem);
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-meta {
+        display: grid;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark">EU</span>
+        <span>Eduardo Urbina</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#infrastructure">Infrastructure</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Full Stack Application Developer · AWS Cloud</div>
+
+          <h1>
+            I build
+            <span class="gradient-text">cloud-ready applications</span>
+            and reliable digital experiences.
+          </h1>
+
+          <p class="hero-copy">
+            I'm Eduardo Daniel Urbina Campos, a Computer Engineer and Full Stack
+            Application Developer focused on AWS Cloud, modern web applications,
+            DevOps, infrastructure automation and AI-driven solutions.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View my projects</a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/00urbina00"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub profile
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span>Based in Guadalajara, Jalisco, Mexico</span>
+            <span>Computer Engineering graduate</span>
+            <span>Open to collaboration</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Current focus">
+          <div class="status">
+            <span class="status-dot"></span>
+            Currently building and learning
+          </div>
+
+          <div class="focus-list">
+            <div class="focus-item">
+              <span>AWS Cloud</span>
+              <span>Cloud</span>
+            </div>
+
+            <div class="focus-item">
+              <span>Full Stack Development</span>
+              <span>Web</span>
+            </div>
+
+            <div class="focus-item">
+              <span>DevOps & CI/CD</span>
+              <span>Automation</span>
+            </div>
+
+            <div class="focus-item">
+              <span>Infrastructure</span>
+              <span>Self-hosted</span>
+            </div>
+
+            <div class="focus-item">
+              <span>Artificial Intelligence</span>
+              <span>Applied AI</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">About me</div>
+
+          <div>
+            <h2>Engineering software with a practical, systems-oriented mindset.</h2>
+            <p class="section-description">
+              My background combines software engineering, cloud technologies,
+              artificial intelligence and hands-on infrastructure work.
+            </p>
+          </div>
+        </div>
+
+        <article class="card about-card">
+          <div class="about-grid">
+            <div class="about-copy">
+              <p>
+                I am a <strong>Computer Engineering graduate from the University of Guadalajara</strong>
+                and currently work at <strong>IBM as a Full Stack Application Developer</strong>,
+                building and improving cloud-oriented applications.
+              </p>
+
+              <p>
+                My experience includes backend and frontend development, relational
+                databases, containerized workloads, CI/CD pipelines, Linux servers,
+                computer vision and machine learning. I enjoy understanding systems
+                end to end: from application code and APIs to deployment,
+                networking and production infrastructure.
+              </p>
+
+              <p>
+                I am especially interested in <strong>AWS Cloud</strong>,
+                <strong>modern web development</strong>,
+                <strong>DevOps</strong>, <strong>automation</strong> and
+                <strong>AI-assisted software engineering</strong>.
+              </p>
+            </div>
+
+            <div class="about-facts">
+              <div class="fact">
+                <div class="fact-label">Role</div>
+                <div class="fact-value">Full Stack Application Developer at IBM</div>
+              </div>
+
+              <div class="fact">
+                <div class="fact-label">Education</div>
+                <div class="fact-value">B.Eng. in Computer Engineering</div>
+              </div>
+
+              <div class="fact">
+                <div class="fact-label">Main interests</div>
+                <div class="fact-value">Cloud, web, DevOps, infrastructure and AI</div>
+              </div>
+
+              <div class="fact">
+                <div class="fact-label">Languages</div>
+                <div class="fact-value">Spanish and English</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">Technical stack</div>
+
+          <div>
+            <h2>Tools and technologies I use to build complete solutions.</h2>
+            <p class="section-description">
+              My stack spans application development, cloud services, databases,
+              containers, infrastructure and applied artificial intelligence.
+            </p>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card skill-card">
+            <h3>Cloud & AWS</h3>
+            <div class="tag-list">
+              <span class="tag">AWS</span>
+              <span class="tag">EC2</span>
+              <span class="tag">S3</span>
+              <span class="tag">Lambda</span>
+              <span class="tag">API Gateway</span>
+              <span class="tag">IAM</span>
+              <span class="tag">CloudWatch</span>
+              <span class="tag">RDS</span>
+              <span class="tag">DynamoDB</span>
+            </div>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Backend</h3>
+            <div class="tag-list">
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">Prisma</span>
+              <span class="tag">JWT</span>
+              <span class="tag">Python</span>
+              <span class="tag">PHP</span>
+              <span class="tag">Laravel</span>
+            </div>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Frontend</h3>
+            <div class="tag-list">
+              <span class="tag">React</span>
+              <span class="tag">Vite</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Material UI</span>
+            </div>
+          </article>
+
+          <article class="card skill-card">
+            <h3>DevOps & Infrastructure</h3>
+            <div class="tag-list">
+              <span class="tag">Docker</span>
+              <span class="tag">Docker Compose</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">GHCR</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Caddy</span>
+              <span class="tag">Cloudflare Tunnel</span>
+              <span class="tag">Portainer</span>
+            </div>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Databases</h3>
+            <div class="tag-list">
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Relational modeling</span>
+              <span class="tag">ORMs</span>
+            </div>
+          </article>
+
+          <article class="card skill-card">
+            <h3>AI & Engineering</h3>
+            <div class="tag-list">
+              <span class="tag">TensorFlow</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">C++</span>
+              <span class="tag">C</span>
+              <span class="tag">Java</span>
+              <span class="tag">C#</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">Selected projects</div>
+
+          <div>
+            <h2>Projects that reflect my evolution as a developer.</h2>
+            <p class="section-description">
+              From applied AI and computer vision to full stack platforms,
+              self-hosted infrastructure and deployment automation.
+            </p>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <article class="card project-card">
+            <div class="project-label">Full Stack</div>
+            <h3>Personal Finance Manager</h3>
+            <p>
+              A full stack personal finance platform with authentication,
+              account and transaction management, statistics, investments,
+              database persistence and AI-assisted features.
+            </p>
+            <div class="project-stack">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Express</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Prisma</span>
+              <span class="tag">Docker</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Infrastructure</div>
+            <h3>Self-Hosted Homelab</h3>
+            <p>
+              A secure containerized environment for hosting applications,
+              managing services and exposing selected resources through a
+              reverse proxy and Cloudflare Tunnel.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Docker Compose</span>
+              <span class="tag">Caddy</span>
+              <span class="tag">Cloudflare</span>
+              <span class="tag">Portainer</span>
+              <span class="tag">Linux</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Artificial Intelligence</div>
+            <h3>Sargassum Level Estimator</h3>
+            <p>
+              Improved a deep learning model for detecting sargassum on Mexican
+              beaches, increasing model accuracy from 60% to 73%.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">Deep Learning</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Computer Vision</div>
+            <h3>Interactive Computer Vision Game</h3>
+            <p>
+              Built a real-time interactive game using object tracking and image
+              transformations for a public event experience.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">Pygame</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Computer Vision</div>
+            <h3>Facial Recognition Access System</h3>
+            <p>
+              Implemented a feature-extraction-based recognition system that
+              allows new users to be added without retraining the complete model.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">MediaPipe</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Compilers</div>
+            <h3>Lexical, Syntactic and Semantic Analyzer</h3>
+            <p>
+              Created a visual IDE-like analyzer using deterministic finite
+              automata, syntax analysis and expression evaluation to validate
+              source code.
+            </p>
+            <div class="project-stack">
+              <span class="tag">C++</span>
+              <span class="tag">Qt</span>
+              <span class="tag">Automata</span>
+              <span class="tag">Compiler Design</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Operating Systems</div>
+            <h3>Process Scheduling Simulators</h3>
+            <p>
+              Developed process simulators with FCFS, Round Robin and SJF,
+              including process states, secondary memory and real-time memory
+              management.
+            </p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">Qt</span>
+              <span class="tag">Scheduling</span>
+              <span class="tag">Memory Management</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-label">Web Development</div>
+            <h3>E-Commerce Platform</h3>
+            <p>
+              Built a full stack e-commerce system with product management,
+              order processing, user management and shopping cart functionality.
+            </p>
+            <div class="project-stack">
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="infrastructure">
+      <div class="container">
+        <article class="card pipeline-card">
+          <div class="section-kicker">Portfolio infrastructure</div>
+          <h2>This website is also a DevOps project.</h2>
+          <p class="section-description">
+            The portfolio is packaged as a Docker image, published through
+            GitHub Actions and deployed to a self-hosted server behind Caddy
+            and Cloudflare Tunnel.
+          </p>
+
+          <div class="pipeline" aria-label="Deployment pipeline">
+            <div class="pipeline-step">
+              <span class="step-number">01</span>
+              <div>
+                <div class="step-title">Git push</div>
+                <p class="step-copy">Source code is pushed to GitHub.</p>
+              </div>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="step-number">02</span>
+              <div>
+                <div class="step-title">GitHub Actions</div>
+                <p class="step-copy">The container image is built automatically.</p>
+              </div>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="step-number">03</span>
+              <div>
+                <div class="step-title">GHCR</div>
+                <p class="step-copy">Versioned images are stored in the registry.</p>
+              </div>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="step-number">04</span>
+              <div>
+                <div class="step-title">Docker Compose</div>
+                <p class="step-copy">The server pulls and runs the latest image.</p>
+              </div>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="step-number">05</span>
+              <div>
+                <div class="step-title">Production</div>
+                <p class="step-copy">Caddy and Cloudflare securely expose the site.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <article class="card contact-card">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2>Let's build something useful.</h2>
+            <p>
+              I am interested in software engineering, AWS Cloud, backend and
+              full stack development, infrastructure, automation and AI-driven
+              projects.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a
+              class="button button-primary"
+              href="mailto:edurbina2002@hotmail.com"
+            >
+              Send email
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://www.linkedin.com/in/-daniel-urbina"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://github.com/00urbina00"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-note">
+        © <span id="current-year"></span> Eduardo Daniel Urbina Campos.
+      </div>
+      <div class="footer-stack">
+        Built with HTML and CSS · Containerized with Docker · Deployed through GitHub Actions
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
