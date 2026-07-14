@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectDetailPage from '../../components/ProjectDetailPage.astro';
+import { localizedProject, projects } from '../../data/portfolio';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project: localizedProject(project, 'en') } }));
+}
+const { project } = Astro.props;
+---
+
+<BaseLayout locale="en" title={`${project.name} | Eduardo Urbina`} alternatePath={`/es/projects/${project.slug}/`}>
+  <ProjectDetailPage locale="en" project={project} />
+</BaseLayout>

@@ -1,0 +1,207 @@
+---
+import Header from './Header.astro';
+import ProjectCard from './ProjectCard.astro';
+import { copy, credentials, experience, localizedProject, profile, projects, type Locale } from '../data/portfolio';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = copy[locale];
+const localizedProjects = projects.map((project) => localizedProject(project, locale));
+const skillCloud = ['AWS', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'CI/CD', 'Linux', 'Cloudflare', 'Computer Vision'];
+---
+
+<Header locale={locale} nav={t.nav} switchLabel={t.switchLanguage} />
+
+<main id="top">
+  <section class="hero section-grid" aria-labelledby="hero-title">
+    <div class="hero-index" aria-hidden="true">00 / 05</div>
+    <div class="hero-content">
+      <p class="kicker">{t.heroEyebrow}</p>
+      <h1 id="hero-title"><span>{t.heroTitleA}</span><strong>{t.heroTitleB}</strong></h1>
+      <p class="hero-copy">{t.heroCopy}</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#work">{t.explore}<span aria-hidden="true">↓</span></a>
+        <a class="button secondary" href={profile.cv} download>{t.downloadCv}<span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <aside class="hero-console" aria-label="Professional status">
+      <div class="console-bar"><span></span><span></span><span></span><b>eduardo.profile</b></div>
+      <div class="console-body">
+        <p><span class="prompt">$</span> whoami</p>
+        <p class="console-output">{profile.role[locale]}</p>
+        <p><span class="prompt">$</span> location</p>
+        <p class="console-output">{profile.location}</p>
+        <p><span class="prompt">$</span> focus --current</p>
+        <p class="console-output success">{t.currentValue}<span class="blink">_</span></p>
+      </div>
+    </aside>
+    <div class="hero-meta">
+      <span><b>{t.locationLabel}</b>{profile.location}</span>
+      <span><b>{t.currentlyLabel}</b>{profile.role[locale]}</span>
+    </div>
+  </section>
+
+  <section class="ticker" aria-label="Technology highlights">
+    <div class="ticker-track">
+      {[...skillCloud, ...skillCloud].map((skill) => <span>{skill}<i>✦</i></span>)}
+    </div>
+  </section>
+
+  <section class="section-grid content-section about-section" id="about" aria-labelledby="about-title">
+    <div class="section-index">01 / 05</div>
+    <div class="section-intro" data-reveal>
+      <p class="kicker">{t.aboutKicker}</p>
+      <h2 id="about-title">{t.aboutTitle}</h2>
+    </div>
+    <div class="about-copy" data-reveal>
+      <p>{t.aboutP1}</p>
+      <p>{t.aboutP2}</p>
+    </div>
+    <blockquote class="principle-card" data-reveal>
+      <span>{t.principle}</span>
+      <p>“{t.principleValue}”</p>
+      <div class="signature">EU<span>/ systems thinker</span></div>
+    </blockquote>
+    <div class="career-block" data-reveal>
+      <div class="career-heading">
+        <p class="kicker">{t.journeyKicker}</p>
+        <h3>{t.journeyTitle}</h3>
+      </div>
+      <div class="career-timeline">
+        {experience.map((item, index) => (
+          <article class="career-item">
+            <span class="career-node">{String(index + 1).padStart(2, '0')}</span>
+            <div><b>{item.role[locale]}</b><small>{item.company} / {item.type[locale]}</small></div>
+            <time>{item.period[locale]}</time>
+          </article>
+        ))}
+        <article class="career-item education-item">
+          <span class="career-node">03</span>
+          <div><b>{t.educationDegree}</b><small>{t.educationLabel}</small></div>
+          <time>{t.educationPeriod}</time>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-grid content-section work-section" id="work" aria-labelledby="work-title">
+    <div class="section-index">02 / 05</div>
+    <div class="section-intro" data-reveal>
+      <p class="kicker">{t.workKicker}</p>
+      <h2 id="work-title">{t.workTitle}</h2>
+      <p>{t.workCopy}</p>
+    </div>
+    <div class="project-filters" role="group" aria-label="Project filters" data-reveal>
+      <button class="filter-button active" type="button" data-project-filter="all">{t.all}</button>
+      <button class="filter-button" type="button" data-project-filter="product">{t.product}</button>
+      <button class="filter-button" type="button" data-project-filter="infrastructure">{t.infrastructure}</button>
+      <button class="filter-button" type="button" data-project-filter="ai">{t.ai}</button>
+      <button class="filter-button" type="button" data-project-filter="engineering">{t.engineering}</button>
+    </div>
+    <div class="projects-grid">
+      {localizedProjects.map((project, index) => (
+        <ProjectCard
+          project={project}
+          locale={locale}
+          index={index}
+          labels={{ quickView: t.quickView, caseStudy: t.caseStudy, visitLive: t.visitLive, source: t.source, challenge: t.challenge, outcome: t.outcome, close: t.close }}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section-grid content-section capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
+    <div class="section-index">03 / 05</div>
+    <div class="section-intro" data-reveal>
+      <p class="kicker">{t.capabilitiesKicker}</p>
+      <h2 id="capabilities-title">{t.capabilitiesTitle}</h2>
+    </div>
+    <div class="capability-list">
+      {t.capabilityItems.map(([number, title, description]) => (
+        <article class="capability-row" data-reveal>
+          <span>{number}</span><h3>{title}</h3><p>{description}</p><i aria-hidden="true">↗</i>
+        </article>
+      ))}
+    </div>
+    <div class="credentials-heading" data-reveal>
+      <p class="kicker">{t.credentialsKicker}</p>
+      <h3>{t.credentialsTitle}</h3>
+    </div>
+    <div class="credentials-grid">
+      {credentials.map((credential) => (
+        <article class="credential-card" data-reveal>
+          <div class="credential-mark" aria-hidden="true">{credential.mark}</div>
+          <div>
+            <span>{credential.provider}</span>
+            <h4>{credential.name}</h4>
+            <p>{credential.issued[locale]} {credential.url && <><i>/</i> {credential.expires[locale]}</>}</p>
+          </div>
+          {credential.url
+            ? <a href={credential.url} target="_blank" rel="noreferrer" aria-label={`${t.verifyCredential}: ${credential.name}`}>{t.verifyCredential} ↗</a>
+            : <span class="credential-pending">{credential.expires[locale]}</span>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-grid content-section infrastructure-section" aria-labelledby="infrastructure-title">
+    <div class="section-index">04 / 05</div>
+    <div class="infrastructure-copy" data-reveal>
+      <p class="kicker">{t.infraKicker}</p>
+      <h2 id="infrastructure-title">{t.infraTitle}</h2>
+      <p>{t.infraCopy}</p>
+    </div>
+    <div class="pipeline" data-reveal>
+      {t.pipeline.map((step, index) => (
+        <div class="pipeline-step"><span>{String(index + 1).padStart(2, '0')}</span><b>{step}</b></div>
+      ))}
+      <svg class="pipeline-line" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M20 78 C130 20 220 110 330 62 S540 26 650 66 S850 105 980 34"></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-grid content-section contact-section" id="contact" aria-labelledby="contact-title">
+    <div class="section-index">05 / 05</div>
+    <div class="contact-content" data-reveal>
+      <p class="kicker">{t.contactKicker}</p>
+      <h2 id="contact-title">{t.contactTitle}</h2>
+      <p>{t.contactCopy}</p>
+      <div class="contact-actions">
+        <a class="button primary" href={`mailto:${profile.email}`}>{t.emailMe}<span>↗</span></a>
+        <a class="social-link" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+        <a class="social-link" href={profile.github} target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span>© {new Date().getFullYear()} {profile.name}</span>
+  <span>{t.footer}</span>
+  <a href="#top">Top ↑</a>
+</footer>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('[data-project-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+  filters.forEach((button) => button.addEventListener('click', () => {
+    filters.forEach((item) => item.classList.toggle('active', item === button));
+    const filter = button.dataset.projectFilter;
+    cards.forEach((card) => {
+      const visible = filter === 'all' || card.dataset.category === filter;
+      card.toggleAttribute('hidden', !visible);
+    });
+  }));
+
+  document.querySelectorAll<HTMLButtonElement>('[data-project-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const dialog = document.getElementById(button.dataset.projectOpen ?? '') as HTMLDialogElement | null;
+      dialog?.showModal();
+    });
+  });
+  document.querySelectorAll<HTMLDialogElement>('[data-project-dialog]').forEach((dialog) => {
+    dialog.querySelector<HTMLButtonElement>('[data-project-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  });
+</script>

@@ -1,0 +1,44 @@
+---
+import Header from './Header.astro';
+import { copy, profile, type Locale, type Project } from '../data/portfolio';
+
+interface Props {
+  locale: Locale;
+  project: Omit<Project, 'name' | 'eyebrow' | 'summary' | 'detail' | 'challenge' | 'outcome' | 'status'> & {
+    name: string; eyebrow: string; summary: string; detail: string; challenge: string; outcome: string; status: string;
+  };
+}
+const { locale, project } = Astro.props;
+const t = copy[locale];
+const homePath = locale === 'en' ? '/' : '/es/';
+---
+
+<Header locale={locale} nav={t.nav} switchLabel={t.switchLanguage} alternatePath={locale === 'en' ? `/es/projects/${project.slug}/` : `/projects/${project.slug}/`} />
+<main class={`project-page accent-${project.accent}`}>
+  <a class="project-back" href={`${homePath}#work`}>← {t.projectBack}</a>
+  <header class="project-hero">
+    <div>
+      <p class="kicker">{project.eyebrow} / {project.status}</p>
+      <h1>{project.name}</h1>
+      <p>{project.summary}</p>
+    </div>
+    <div class="project-orbit" aria-hidden="true"><span></span><b>EU / {project.slug.slice(0, 2).toUpperCase()}</b></div>
+  </header>
+  <section class="project-story">
+    <div><p class="kicker">{t.projectContext}</p><h2>{project.detail}</h2></div>
+    <div class="story-facts">
+      <article><span>01 / {t.challenge}</span><p>{project.challenge}</p></article>
+      <article><span>02 / {t.outcome}</span><p>{project.outcome}</p></article>
+    </div>
+  </section>
+  <section class="project-technology">
+    <p class="kicker">{t.projectStack}</p>
+    <ul>{project.stack.map((item) => <li>{item}</li>)}</ul>
+  </section>
+  <aside class="project-next"><span>+</span><p>{t.projectNext}</p></aside>
+  <div class="project-page-actions">
+    {project.liveUrl && <a class="button primary" href={project.liveUrl} target="_blank" rel="noreferrer">{t.visitLive}<span>↗</span></a>}
+    {project.repoUrl && <a class="button secondary" href={project.repoUrl} target="_blank" rel="noreferrer">{t.source}<span>↗</span></a>}
+    <a class="social-link" href={`mailto:${profile.email}`}>{t.emailMe}<span>↗</span></a>
+  </div>
+</main>

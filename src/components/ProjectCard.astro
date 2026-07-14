@@ -1,0 +1,56 @@
+---
+import type { Locale, Project } from '../data/portfolio';
+
+interface Props {
+  project: Omit<Project, 'name' | 'eyebrow' | 'summary' | 'detail' | 'challenge' | 'outcome' | 'status'> & {
+    name: string; eyebrow: string; summary: string; detail: string; challenge: string; outcome: string; status: string;
+  };
+  locale: Locale;
+  labels: { quickView: string; caseStudy: string; visitLive: string; source: string; challenge: string; outcome: string; close: string };
+  index: number;
+}
+
+const { project, locale, labels, index } = Astro.props;
+const detailPath = locale === 'en' ? `/projects/${project.slug}/` : `/es/projects/${project.slug}/`;
+---
+
+<article class:list={['project-card', `accent-${project.accent}`, { featured: project.featured }]} data-category={project.category} data-project-card data-reveal style={`--delay:${Math.min(index * 55, 330)}ms`}>
+  <div class="project-card-top">
+    <div>
+      <p class="project-eyebrow">{project.eyebrow}</p>
+      <h3>{project.name}</h3>
+    </div>
+    <span class="project-status"><span></span>{project.status}</span>
+  </div>
+  <p class="project-summary">{project.summary}</p>
+  <ul class="tag-list" aria-label="Technology stack">
+    {project.stack.map((item) => <li>{item}</li>)}
+  </ul>
+  <div class="project-actions">
+    <button class="text-link" type="button" data-project-open={`project-${project.slug}`}>
+      {labels.quickView}<span aria-hidden="true">↗</span>
+    </button>
+    <a class="text-link muted-link" href={detailPath}>{labels.caseStudy}<span aria-hidden="true">→</span></a>
+  </div>
+  <dialog class="project-dialog" id={`project-${project.slug}`} data-project-dialog>
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <p class="project-eyebrow">{project.eyebrow}</p>
+          <h3>{project.name}</h3>
+        </div>
+        <button class="dialog-close" type="button" data-project-close aria-label={labels.close}>×</button>
+      </div>
+      <p class="dialog-detail">{project.detail}</p>
+      <div class="dialog-facts">
+        <div><span>{labels.challenge}</span><p>{project.challenge}</p></div>
+        <div><span>{labels.outcome}</span><p>{project.outcome}</p></div>
+      </div>
+      <div class="dialog-actions">
+        {project.liveUrl && <a class="button primary" href={project.liveUrl} target="_blank" rel="noreferrer">{labels.visitLive}<span>↗</span></a>}
+        {project.repoUrl && <a class="button secondary" href={project.repoUrl} target="_blank" rel="noreferrer">{labels.source}<span>↗</span></a>}
+        <a class="button secondary" href={detailPath}>{labels.caseStudy}<span>→</span></a>
+      </div>
+    </div>
+  </dialog>
+</article>

@@ -1,0 +1,32 @@
+---
+import { profile, type Locale } from '../data/portfolio';
+
+interface Props {
+  locale: Locale;
+  nav: { about: string; work: string; capabilities: string; contact: string };
+  switchLabel: string;
+  alternatePath?: string;
+}
+
+const { locale, nav, switchLabel, alternatePath = locale === 'en' ? '/es/' : '/' } = Astro.props;
+---
+
+<header class="site-header">
+  <a class="brand" href={locale === 'en' ? '/' : '/es/'} aria-label={`${profile.shortName} — home`}>
+    <span class="brand-prompt" aria-hidden="true">&gt;_</span>
+    <span>EU</span>
+  </a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="#about">{nav.about}</a>
+    <a href="#work">{nav.work}</a>
+    <a href="#capabilities">{nav.capabilities}</a>
+    <a href="#contact">{nav.contact}</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"></path></svg>
+    </button>
+    <a class="language-switch" href={alternatePath} lang={locale === 'en' ? 'es' : 'en'}>{switchLabel}</a>
+  </div>
+</header>

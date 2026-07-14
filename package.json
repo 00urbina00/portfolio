@@ -1,0 +1,17 @@
+{
+  "name": "eduardo-urbina-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "astro": "^7.0.9",
+    "typescript": "^5.9.3"
+  }
+}

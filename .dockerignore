@@ -1,6 +1,11 @@
 .git
 .github
 .gitignore
+.astro
+dist
+node_modules
+output
+tmp
 README.md
 node_modules
 *.log
