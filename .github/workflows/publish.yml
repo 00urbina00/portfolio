@@ -1,4 +1,4 @@
-name: Build and publish container
+name: Build, publish, and deploy container
 
 on:
   push:
@@ -20,6 +20,7 @@ env:
 
 jobs:
   publish:
+    name: Build and publish image
     runs-on: ubuntu-latest
 
     steps:
@@ -54,3 +55,30 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy-production:
+    name: Deploy to production
+    needs: publish
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, linux, x64, homelab]
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://00urbina00.dev
+    permissions:
+      contents: read
+
+    steps:
+      - name: Deploy portfolio production
+        run: sudo /srv/scripts/deploy-portfolio.sh "sha-${GITHUB_SHA}"
+
+      - name: Verify public health
+        run: |
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --retry 12 \
+            --retry-delay 5 \
+            --retry-all-errors \
+            https://00urbina00.dev/health
