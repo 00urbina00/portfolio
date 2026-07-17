@@ -63,7 +63,7 @@ def section(title):
 
 story = []
 header = Table([
-    [Paragraph("Eduardo Daniel<br/>Urbina Campos", styles["name"]), Paragraph("Guadalajara, Jalisco, Mexico<br/>edurbina2002@hotmail.com<br/>linkedin.com/in/daniel-00urbina00<br/>github.com/00urbina00", styles["contact"])],
+    [Paragraph("Eduardo Urbina", styles["name"]), Paragraph("Mexico<br/>edurbina2002@hotmail.com<br/>linkedin.com/in/daniel-00urbina00<br/>github.com/00urbina00", styles["contact"])],
     [Paragraph("AWS FULL STACK DEVELOPER | COMPUTER ENGINEER", styles["role"]), ""],
 ], colWidths=[112 * mm, 62 * mm], style=TableStyle([
     ("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -77,17 +77,17 @@ story.append(header)
 
 story += section("Profile")
 story.append(Paragraph(
-    "AWS Full Stack Developer at IBM and licensed Computer Engineer. I build cloud-ready applications across frontend, backend, delivery and infrastructure, with additional experience in applied AI and computer vision. I value secure systems, trustworthy data and practical engineering that can be operated end to end.",
+    "AWS Full Stack Developer and Computer Engineer. I build cloud-ready applications across frontend, backend, delivery and infrastructure, with additional experience in applied AI and computer vision. I value secure systems, trustworthy data and practical engineering that can be operated end to end.",
     styles["body"],
 ))
 
 story += section("Experience")
-story.append(Paragraph("IBM - Application Developer | Oct 2025 - Present", styles["heading"]))
+story.append(Paragraph("Application Developer | Present", styles["heading"]))
 story.append(Paragraph(
     "Building and improving full stack, cloud-oriented applications with a focus on AWS, maintainable delivery and end-to-end engineering.",
     styles["body"],
 ))
-story.append(Paragraph("IBM - Cloud Fullstack Intern | Mar 2025 - Sep 2025", styles["heading"]))
+story.append(Paragraph("Cloud Fullstack Intern | Previous role", styles["heading"]))
 story.append(Paragraph(
     "Part-time cloud and full stack internship focused on programming and Amazon Web Services.",
     styles["body"],
